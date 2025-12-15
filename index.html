@@ -1,31 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Happy Panda Crafts</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #fff8f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       text-align: center;
     }
-    .box {
+
+    .container {
+      max-width: 420px;
       padding: 30px;
     }
-    h1 { color: #444; }
-    p { color: #666; }
+
+    img.logo {
+      width: 140px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: normal;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 8px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: white;
+      border-radius: 25px;
+      font-size: 14px;
+    }
+
+    .instagram {
+      background-color: #e1306c;
+    }
+
+    .whatsapp {
+      background-color: #25d366;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #999;
+    }
   </style>
 </head>
+
 <body>
-  <div class="box">
+  <div class="container">
+
+    <!-- LOGO -->
+    <img src="Logo.png" alt="The Happy Panda Crafts Logo" class="logo" />
+
+    <!-- BRAND NAME -->
     <h1>The Happy Panda Crafts 🐼</h1>
-    <p>Work in progress — bringing smiles through craft.</p>
+
+    <!-- TAGLINE -->
+    <h2>Bringing smiles through craft</h2>
+
+    <!-- DESCRIPTION -->
+    <p>
+      Handmade crochet creations crafted with love and care.
+      <br />
+      Custom orders are welcome.
+    </p>
+
+    <!-- SOCIAL BUTTONS -->
+    <div class="buttons">
+
+      <a href="https://wa.me/919922424880" class="whatsapp" target="_blank">
+        WhatsApp
+      </a>
+    </div>
+
+    <!-- WORK IN PROGRESS -->
+    <div class="footer">
+      🛠️ Website under development
+    </div>
+
   </div>
 </body>
 </html>
