@@ -7,42 +7,44 @@
 
   <style>
     body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #333;
-  min-height: 100vh;
-  text-align: center;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      background-color: #f7f3ee;
+      text-align: center;
+    }
 
-  background-image: url("Logo.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-}
+    /* FULL LOGO SECTION */
+    .hero {
+      min-height: 100vh;
+      background-image: url("Logo.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    /* CONTENT BOX */
     .container {
-  max-width: 420px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.85);
-  border-radius: 18px;
-  margin: 40px auto;
-}
-
-    img.logo {
-      width: 140px;
-      margin-bottom: 20px;
+      max-width: 420px;
+      padding: 30px;
+      margin: 40px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
     }
 
     h1 {
       font-size: 28px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     h2 {
       font-size: 16px;
       font-weight: normal;
       color: #777;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
     p {
@@ -78,24 +80,21 @@
 </head>
 
 <body>
+
+  <!-- LOGO SECTION (SCROLLABLE) -->
+  <div class="hero"></div>
+
+  <!-- BRAND CONTENT -->
   <div class="container">
-
-    <!-- LOGO -->
-
-    <!-- BRAND NAME -->
     <h1>The Happy Panda Crafts 🐼</h1>
-
-    <!-- TAGLINE -->
     <h2>Bringing smiles through craft</h2>
 
-    <!-- DESCRIPTION -->
     <p>
       Handmade crochet creations crafted with love and care.
       <br />
       Custom orders are welcome.
     </p>
 
-    <!-- SOCIAL BUTTONS -->
     <div class="buttons">
 
       <a href="https://wa.me/919922424880" class="whatsapp" target="_blank">
@@ -103,11 +102,10 @@
       </a>
     </div>
 
-    <!-- WORK IN PROGRESS -->
     <div class="footer">
       🛠️ Website under development
     </div>
-
   </div>
+
 </body>
 </html>
