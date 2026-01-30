@@ -5,97 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Happy Panda Crafts</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;width:100%;height:100%}
-body{
-  font-family:Poppins,system-ui,sans-serif;
-  /* Fixed background: 'contain' prevents stretching/cropping */
-  background: #faf6f1 url('image_58f7c2.jpg') no-repeat center bottom fixed;
-  background-size: contain; 
-  color:#2d2d2d;
-  overflow-x:hidden;
+/* Reset and Base Setup */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #2d2d2d;
+  margin: 0;
+  background-image: url('image_58f7c2.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-color: #faf6f1;
+  /* Keeps focus on needles/yarn while allowing top strings to crop */
+  background-position: 50% 85%; 
 }
 
 /* ================= WELCOME SCREEN ================= */
-body.welcome-active #site{display:none}
-#welcome{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:10000;}
-#welcome-bg{position:absolute;inset:0;background:url('Logo.png') center/contain no-repeat;background-color:#000;}
-#welcome-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);}
-.welcome-box{position:relative;z-index:2;background:rgba(255,255,255,0.92);padding:44px 38px;border-radius:30px;text-align:center;max-width:420px;box-shadow:0 20px 50px rgba(0,0,0,0.3); margin: 20px;}
-.welcome-box button{padding:14px 36px;border-radius:999px;border:none;background:linear-gradient(135deg,#8e44ad,#e84393);color:#fff;font-weight:600;cursor:pointer;}
+body.welcome-active #site { display: none; }
+#welcome { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background-color: #000; }
+#welcome-bg { position: absolute; inset: 0; background: url('Logo.png') center/contain no-repeat; opacity: 0.4; }
+.welcome-box { position: relative; background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 30px; text-align: center; max-width: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.welcome-box button { padding: 14px 36px; border-radius: 50px; border: none; background: linear-gradient(135deg,#8e44ad,#e84393); color: #fff; font-weight: 600; cursor: pointer; margin-top: 20px; transition: 0.2s; }
+.welcome-box button:hover { transform: scale(1.05); }
 
-/* ================= SITE CONTAINER ================= */
-#site{
-    position:relative;
-    z-index:5;
-    max-width: 1200px; /* Prevents content from stretching too wide on desktop */
-    margin: 0 auto;
-}
+/* ================= SITE HEADER (EXACT LOGO MATCH) ================= */
+#site { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
 
 header {
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255, 255, 255, 0.98);
-  padding:12px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
-.header-left{display:flex; align-items:center; gap:12px;}
-header img{width:45px;height:45px;border-radius:10px}
+
+.header-left { display: flex; align-items: center; gap: 15px; }
+header img { width: 70px; height: 70px; border-radius: 12px; object-fit: cover; }
+
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+/* 1. Happy Panda (Title Case) */
+header h2 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 1.7rem;
+  color: #1a1a1a; 
+  margin: 0;
+  text-transform: none; /* Removed All Caps */
+  letter-spacing: 0.2px;
+}
+
+/* 2. --- CRAFTS --- Bar */
+header .crafts-bar {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .crafts-bar::before,
+header .crafts-bar::after {
+  content: "---";
+  margin: 0 10px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* 3. Tagline: Bringing Smiles Through Craft */
+header .tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-top: 4px;
+  text-align: center;
+}
+
 .contact-btn {
-  background:#25d366; 
-  color:white; 
-  text-decoration:none; 
-  padding:10px 20px; 
-  border-radius:50px; 
-  font-weight:600; 
+  background: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-weight: 600;
   font-size: 0.85rem;
-  white-space: nowrap;
+  transition: 0.3s;
 }
+.contact-btn:hover { background: #1ebe57; }
 
-/* ================= UI ELEMENTS ================= */
-.categories{ 
-    display:flex; 
-    gap:10px; 
-    justify-content:center; 
-    padding:25px 10px; 
-    flex-wrap: wrap; /* Allows buttons to wrap on small screens */
-}
-.category{ padding:8px 20px; border-radius:999px; background:#fff; border:1px solid #eee; font-weight:600; cursor:pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.03); transition: 0.2s;}
-.category.active{ background:linear-gradient(135deg,#ff9a9e,#fad0c4); border-color:transparent; color: #fff; }
+/* ================= CONTENT GRID ================= */
+.categories { display: flex; gap: 10px; justify-content: center; padding: 25px 10px; flex-wrap: wrap; }
+.category { padding: 8px 20px; border-radius: 999px; background: #fff; border: 1px solid #eee; font-weight: 600; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.category.active { background: #1a1a1a; color: #fff; }
 
-.grid{
-  padding:10px 20px 80px; 
-  display:grid;
-  /* minmax(150px, 1fr) ensures cards shrink for mobile but don't stretch excessively */
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); 
-  gap:20px;
-}
-.card{
-  background:#ffffff;
-  border-radius:24px; 
-  overflow:hidden;
-  aspect-ratio:1/1; 
-  cursor:pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.card:hover { transform: scale(1.03); }
-.card img{ width:100%; height:100%; object-fit:cover; }
+.grid { padding: 10px 20px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+.card { background: #fff; border-radius: 25px; overflow: hidden; aspect-ratio: 1/1; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.12); transition: 0.3s; }
+.card:hover { transform: translateY(-8px); }
+.card img { width: 100%; height: 100%; object-fit: cover; }
 
-#modal{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.85); opacity:0; pointer-events:none; z-index:20000; transition: 0.3s;}
-#modal.active{opacity:1;pointer-events:auto}
-#modal-box{ background:#fff; border-radius:30px; padding:20px; text-align:center; max-width: 90%; max-height: 90vh; overflow-y: auto;}
-#modal-box img { border-radius: 20px; margin-bottom: 20px; width: 100%; max-height: 60vh; object-fit: contain;}
+/* Modal */
+#modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.85); z-index: 10000; padding: 20px; }
+#modal-box { background: #fff; border-radius: 30px; padding: 25px; max-width: 500px; width: 100%; text-align: center; }
+#modal-box img { width: 100%; max-height: 60vh; object-fit: contain; border-radius: 20px; margin-bottom: 20px; }
 
-/* Mobile Tweaks */
-@media (max-width: 480px) {
-    header h2 { font-size: 1rem; }
-    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+@media (max-width: 600px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  header { flex-direction: column; gap: 15px; text-align: center; }
+  header h2 { font-size: 1.3rem; }
+  header .tagline { font-size: 0.75rem; }
 }
 </style>
 </head>
@@ -104,43 +146,46 @@ header img{width:45px;height:45px;border-radius:10px}
 
 <div id="welcome">
   <div id="welcome-bg"></div>
-  <div id="welcome-overlay"></div>
   <div class="welcome-box">
-    <h1>The Happy Panda Crafts 🐼</h1>
-    <p>Handmade Crochet with Love</p>
-    <button onclick="enterSite()">Enter Site</button>
+    <h1>Crafted with Care, Shared with Love 🧶</h1>
+    <p>Welcome to our little corner of creativity. Every stitch in our collection is handmade to bring a bit of warmth and a big smile to your day.</p>
+    <button onclick="enterSite()">See Our Creations</button>
   </div>
 </div>
 
 <div id="site">
-<header>
-  <div class="header-left">
-    <img src="Logo.png" alt="Logo">
-    <h2>The Happy Panda Crafts</h2>
+  <header>
+    <div class="header-left">
+      <img src="Logo.png" alt="Logo">
+      <div class="logo-text-wrapper">
+        <h2>Happy Panda</h2>
+        <div class="crafts-bar">Crafts</div>
+        <div class="tagline">Bringing Smiles Through Craft</div>
+      </div>
+    </div>
+    <a href="https://wa.me/91XXXXXXXXXX" class="contact-btn" target="_blank">Order via WhatsApp</a>
+  </header>
+
+  <div class="categories">
+    <div class="category active" data-cat="all">All Items</div>
+    <div class="category" data-cat="toys">Toys</div>
+    <div class="category" data-cat="decor">Decor</div>
+    <div class="category" data-cat="gifts">Gifts</div>
   </div>
-  <a href="https://wa.me/91XXXXXXXXXX" class="contact-btn" target="_blank">Contact us</a>
-</header>
 
-<div class="categories">
-  <div class="category active" data-cat="all">All</div>
-  <div class="category" data-cat="toys">Toys</div>
-  <div class="category" data-cat="decor">Decor</div>
-  <div class="category" data-cat="gifts">Gifts</div>
+  <div class="grid" id="grid">
+    <div class="card" data-cat="toys" data-img="images/photo1.jpg"><img src="images/photo1.jpg"></div>
+    <div class="card" data-cat="decor" data-img="images/photo2.jpg"><img src="images/photo2.jpg"></div>
+    <div class="card" data-cat="gifts" data-img="images/photo3.jpg"><img src="images/photo3.jpg"></div>
+    <div class="card" data-cat="toys" data-img="images/photo4.jpg"><img src="images/photo4.jpg"></div>
+  </div>
 </div>
 
-<div class="grid" id="grid">
-  <div class="card" data-cat="toys" data-img="images/photo1.jpg"><img src="images/photo1.jpg"></div>
-  <div class="card" data-cat="decor" data-img="images/photo2.jpg"><img src="images/photo2.jpg"></div>
-  <div class="card" data-cat="gifts" data-img="images/photo3.jpg"><img src="images/photo3.jpg"></div>
-  <div class="card" data-cat="toys" data-img="images/photo4.jpg"><img src="images/photo4.jpg"></div>
-</div>
-</div>
-
-<div id="modal">
+<div id="modal" onclick="if(event.target==this)this.style.display='none'">
   <div id="modal-box">
-    <img id="modalImg">
+    <img id="modalImg" src="">
     <br>
-    <a id="waBtn" target="_blank" style="display:inline-block;padding:12px 30px;border-radius:40px;background:#25d366;color:#fff;font-weight:600;text-decoration:none">Order via WhatsApp</a>
+    <a id="waBtn" href="#" target="_blank" class="contact-btn" style="display:inline-block; padding: 15px 35px;">Check Availability</a>
   </div>
 </div>
 
@@ -150,34 +195,30 @@ function enterSite(){
   document.getElementById('welcome').style.display='none';
 }
 
-const cats=document.querySelectorAll('.category');
-const cards=document.querySelectorAll('.card');
+// Category Filter Logic
+const cats = document.querySelectorAll('.category');
+const cards = document.querySelectorAll('.card');
 
-cats.forEach(btn=>{
-  btn.onclick=()=>{
-    cats.forEach(b=>b.classList.remove('active'));
+cats.forEach(btn => {
+  btn.onclick = () => {
+    cats.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cat=btn.dataset.cat;
-    cards.forEach(card=>{
-      card.style.display=(cat==='all'||card.dataset.cat===cat)?'block':'none';
+    const cat = btn.dataset.cat;
+    cards.forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
     });
   }
 });
 
-const modal=document.getElementById('modal');
-const modalImg=document.getElementById('modalImg');
-const waBtn=document.getElementById('waBtn');
-
-document.querySelectorAll('.card').forEach(c=>{
-  c.onclick=()=>{
-    const img=c.dataset.img;
-    modalImg.src=img;
-    waBtn.href=`https://wa.me/91XXXXXXXXXX?text=Hi!%20Interested%20in:%20${encodeURIComponent(location.origin+'/'+img)}`;
-    modal.classList.add('active');
+// Modal Pop-up Logic
+cards.forEach(c => {
+  c.onclick = () => {
+    const imgPath = c.dataset.img;
+    document.getElementById('modalImg').src = imgPath;
+    document.getElementById('waBtn').href = `https://wa.me/91XXXXXXXXXX?text=Hi! I want to know more about this item: ${imgPath}`;
+    document.getElementById('modal').style.display = 'flex';
   }
 });
-
-modal.onclick=e=>{if(e.target===modal)modal.classList.remove('active')}
 </script>
 
 </body>
