@@ -13,7 +13,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: url('image_58f7c2.jpg') fixed center 85% / cover no-repeat;
+  background: url('Background.png') fixed center 75% / cover no-repeat;
   color: #2d2d2d;
   overflow-x: hidden;
   min-height: 100vh;
@@ -217,20 +217,20 @@ header .tagline { font-family: 'Playfair Display', serif; font-style: italic; fo
 </div>
 
 <script>
-// Particles Effect
-const snowContainer = document.getElementById('snow-container');
-const particles = ['🧶', '💖', '✨'];
-function createParticle() {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  p.innerText = particles[Math.floor(Math.random() * particles.length)];
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.animationDuration = (Math.random() * 3 + 5) + 's';
-  p.style.fontSize = (Math.random() * 10 + 15) + 'px';
-  snowContainer.appendChild(p);
-  setTimeout(() => p.remove(), 8000);
-}
-setInterval(createParticle, 400);
+// // Particles Effect
+// const snowContainer = document.getElementById('snow-container');
+// const particles = ['🧶', '💖', '✨'];
+// function createParticle() {
+//   const p = document.createElement('div');
+//   p.classList.add('particle');
+//   p.innerText = particles[Math.floor(Math.random() * particles.length)];
+//   p.style.left = Math.random() * 100 + 'vw';
+//   p.style.animationDuration = (Math.random() * 3 + 5) + 's';
+//   p.style.fontSize = (Math.random() * 10 + 15) + 'px';
+//   snowContainer.appendChild(p);
+//   setTimeout(() => p.remove(), 8000);
+// }
+// setInterval(createParticle, 400);
 
 // Enter Site
 function enterSite() {
@@ -246,7 +246,7 @@ cats.forEach(btn => {
     cats.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.cat;
-    cards.forEach(card => card.style.display = (filter === 'all' || card.dataset.cat === filter) ? 'block' : 'none');
+    cards.forEach(card => card.style.display = (filter === 'All' || card.dataset.cat === filter) ? 'block' : 'none');
   }
 });
 
