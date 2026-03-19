@@ -1,96 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Happy Panda Crafts</title>
-    <style>
-        /* Reset default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Happy Panda Crafts</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #FFF8F0; /* Soft, cozy background */
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@700&family=Playfair+Display:ital,wght@1,500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 600px;
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+<style>
+* { box-sizing: border-box; }
 
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('Background.png') fixed center 75% / cover no-repeat;
+  color: #2d2d2d;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            color: #D2691E; /* Warm, crafty vibe */
-        }
+/* ================= SNOWFALL EFFECT ================= */
+#snow-container { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+.particle { position: absolute; top: -50px; font-size: 20px; animation: fall linear infinite; opacity: 0.6; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        .tagline {
-            font-size: 1.2em;
-            color: #A0522D;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
+/* ================= TRENDY WELCOME SCREEN ================= */
+#welcome {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.8);
+  transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
+.welcome-box {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 50px 30px; border-radius: 40px; text-align: center;
+  max-width: 450px; border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  animation: float 4s ease-in-out infinite;
+}
 
-        .emoji {
-            font-size: 2em;
-        }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        .footer {
-            font-size: 0.9em;
-            color: #888;
-        }
+.welcome-box h1 { font-family: 'Fredoka One', cursive; color: #1a1a1a; font-size: 2.2rem; margin-bottom: 10px; }
+.welcome-box button {
+  padding: 16px 45px; border-radius: 50px; border: none;
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+  #background: linear-gradient(135deg, #48c6ef 0%, #6f86d6 100%);
+  color: #fff; font-size: 1.2rem; font-weight: 700; cursor: pointer;
+  box-shadow: 0 10px 20px rgba(255, 154, 158, 0.4); transition: 0.3s;
+}
 
-        /* Subtle animation */
-        .pulse {
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
+/* ================= HEADER (EXACT LOGO MATCH) ================= */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px); padding: 12px 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
+.header-left { display: flex; align-items: center; gap: 15px; }
+header img { width: 75px; height: 75px; border-radius: 15px; object-fit: cover; }
+
+.logo-text-wrapper { display: flex; flex-direction: column; line-height: 1; }
+header h2 { font-family: 'Fredoka One', cursive; font-size: 1.9rem; color: #1a1a1a; margin: 0; letter-spacing: -0.5px; }
+
+header .crafts-bar {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem; font-weight: 700; color: #1a1a1a;
+  text-transform: uppercase; letter-spacing: 5px;
+  margin: 4px 0; display: flex; align-items: center; justify-content: center;
+}
+header .crafts-bar::before, header .crafts-bar::after { content: "---"; margin: 0 10px; opacity: 0.8; }
+
+header .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; font-weight: 500; color: #1a1a1a; text-align: center; }
+
+/* DUAL CONTACT BUTTONS */
+.header-right { display: flex; gap: 10px; align-items: center; }
+
+.contact-btn {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.btn-wa { background: #25d366; color: white; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+.btn-mail { background: #1a1a1a; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+.contact-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+/* ================= GRID & MODAL ================= */
+.categories { display: flex; gap: 12px; justify-content: center; padding: 25px 10px; flex-wrap: wrap; }
+.category { padding: 10px 25px; border-radius: 999px; background: #fff; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid transparent; }
+.category.active { background: #1a1a1a; color: #fff; }
+
+.grid { padding: 0 25px 100px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto; }
+.card { background: rgba(255, 255, 255, 0.95); border-radius: 35px; padding: 15px; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.card:hover { transform: translateY(-15px); box-shadow: 0 25px 45px rgba(0,0,0,0.1); }
+.card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 25px; }
+
+#modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 10000; padding: 20px; }
+#modal-box { background: #fff; border-radius: 40px; padding: 30px; max-width: 550px; width: 100%; text-align: center; }
+#modal-box img { width: 100%; max-height: 55vh; object-fit: contain; border-radius: 25px; margin-bottom: 25px; }
+.modal-actions { display: flex; flex-direction: column; gap: 10px; }
+.order-btn { text-decoration: none; padding: 16px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; }
+
+@media (max-width: 768px) {
+  header { flex-direction: column; gap: 15px; padding: 20px; text-align: center; }
+  .header-right { width: 100%; justify-content: center; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  header h2 { font-size: 1.5rem; }
+}
+</style>
 </head>
-<body>
-    <div class="container">
-        <!-- Logo -->
-        <img src="Logo.png" alt="Site Logo" class="logo">
 
-        <!-- Header and tagline -->
-        <h1>The Happy Panda Crafts </h1>
-        <div class="tagline">Bringing Smiles Through Crafts</div>
+<body class="welcome-active">
 
-        <p class="pulse">Our cozy craft store is getting ready just for you! 🌸</p>
-        <p>Stay tuned for handcrafted products and patterns that inspire creativity.</p>
+<div id="snow-container"></div>
 
-        <div class="footer">Site is under construction — we’ll be live soon!</div>
+<div id="welcome">
+  <div class="welcome-box">
+    <h1>Crafted with Care, Shared with Love 🧶</h1>
+    <p>Welcome to our little corner of creativity. Every stitch in our collection is handmade to bring a bit of warmth and a big smile to your day.</p>
+    <button onclick="enterSite()">Shop Unique!</button>
+  </div>
+</div>
+
+<div id="site">
+  <header>
+    <div class="header-left">
+      <img src="Logo.png" alt="Logo">
+      <div class="logo-text-wrapper">
+        <h2>The Happy Panda</h2>
+        <div class="crafts-bar">Crafts</div>
+        <div class="tagline">Bringing Smiles Through Craft</div>
+      </div>
     </div>
+    
+    <div class="header-right">
+        
+        <a href="https://wa.me/919922424880" class="contact-btn btn-wa">WhatsApp</a>
+        <a href="mailto:thehappypandacrafts@gmail.com" class="contact-btn btn-mail">Email Us</a>
+        <img src="MakeInIndia.png" alt="Logo">
+    </div>
+  </header>
+
+  <div style="text-align: center; padding: 15px 15px; background: rgba(255, 255, 255, 0.85); margin: 10px auto; max-width: calc(100% - 100px); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+    <p style="margin: 0 0 10px; font-size: 1.0rem; color: #2d2d2d; font-weight: 500; line-height: 1.6;">All items customizable in size, color & quantity. Handcrafted & shipped in 10-15 days, depending on availability of the color & quantity</p>
+    <p style="margin: 0; font-size: 0.9rem; color: #666; font-weight: 400; line-height: 1.5; font-style: italic;">Please note that actual items may vary slightly from images displayed, as each piece is lovingly handcrafted with unique character.</p>
+  </div>
+
+  <div class="categories">
+    <div class="category active" data-cat="All">All Items</div>
+    <div class="category" data-cat="dresses">Dresses</div>
+    <div class="category" data-cat="frocks">Frocks</div>
+    <div class="category" data-cat="covers">Covers</div>
+    <div class="category" data-cat="pursespouches">Purses & Pouches</div>
+    <div class="category" data-cat="sweaters">Sweaters</div>
+    <div class="category" data-cat="blankets">Blankets</div>
+    <div class="category" data-cat="softtoys">Soft Toys</div>
+    <div class="category" data-cat="hairties">Hair Ties</div>
+    <div class="category" data-cat="homedecor">Home Decor</div>
+    <div class="category" data-cat="keychainbagtags">KeyChains & BagTags</div>
+    <div class="category" data-cat="others">Others</div>
+  </div>
+
+  <div class="grid" id="mainGrid">
+    <div class="card" data-cat="dresses" data-img="images/BearDress.png"><img src="images/BearDress.png"></div>
+    <div class="card" data-cat="dresses" data-img="images/PinkSkirtHolter_top.png"><img src="images/PinkSkirtHolter_top.png"></div>
+    <div class="card" data-cat="dresses" data-img="images/PinkSkirtHolter_top_bk.png"><img src="images/PinkSkirtHolter_top_bk.png"></div>
+    <div class="card" data-cat="dresses" data-img="images/PantCapSet.png"><img src="images/PantCapSet.png"></div>
+
+    <div class="card" data-cat="frocks" data-img="images/BlueFrock.png"><img src="images/BlueFrock.png"></div>
+    <div class="card" data-cat="frocks" data-img="images/PinkNetted.png"><img src="images/PinkNetted.png"></div>
+    <div class="card" data-cat="frocks" data-img="images/YellowDesignerFrock.png"><img src="images/YellowDesignerFrock.png"></div>
+    <div class="card" data-cat="frocks" data-img="images/PinkWhileLinesFrock.png"><img src="images/PinkWhileLinesFrock.png"></div>
+
+    <div class="card" data-cat="pursespouches" data-img="images/AnimalPurses.png"><img src="images/AnimalPurses.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/FlowerPurses.png"><img src="images/FlowerPurses.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/GrannySquarePurses.png"><img src="images/GrannySquarePurses.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/SheepPurses.png"><img src="images/SheepPurses.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/ThreddedYarnPurse.png"><img src="images/ThreddedYarnPurse.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/BearPurse.png"><img src="images/BearPurse.png"></div>
+    <div class="card" data-cat="pursespouches" data-img="images/MultipurposePouches.png"><img src="images/MultipurposePouches.png"></div>
+
+    <div class="card" data-cat="covers" data-img="images/EarbudCover.png"><img src="images/EarbudCover.png"></div>
+    <div class="card" data-cat="covers" data-img="images/IPadCover.png"><img src="images/IPadCover.png"></div>
+
+    <div class="card" data-cat="sweaters" data-img="images/GrannySqrSweater.png"><img src="images/GrannySqrSweater.png"></div>
+    <div class="card" data-cat="sweaters" data-img="images/RedSweater.png"><img src="images/RedSweater.png"></div>
+
+    <div class="card" data-cat="blankets" data-img="images/BabyBlancket.png"><img src="images/BabyBlancket.png"></div>
+
+    <div class="card" data-cat="softtoys" data-img="images/Duck.png"><img src="images/Duck.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/Fox.png"><img src="images/Fox.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/Hippo.png"><img src="images/Hippo.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/LadyPanda.png"><img src="images/LadyPanda.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/SnowyBear.png"><img src="images/SnowyBear.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/Turtles.png"><img src="images/Turtles.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/Whale.png"><img src="images/Whale.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/whale2.png"><img src="images/whale2.png"></div>
+    <div class="card" data-cat="softtoys" data-img="images/Dino.png"><img src="images/Dino.png"></div>
+
+    <div class="card" data-cat="hairties" data-img="images/BowHairTies.png"><img src="images/BowHairTies.png"></div>
+    <div class="card" data-cat="hairties" data-img="images/CarnesiaHairTies.png"><img src="images/CarnesiaHairTies.png"></div>
+    <div class="card" data-cat="hairties" data-img="images/GardeniaHairTies.png"><img src="images/GardeniaHairTies.png"></div>
+    <div class="card" data-cat="hairties" data-img="images/LeafHairTies.png"><img src="images/LeafHairTies.png"></div>
+
+    <div class="card" data-cat="homedecor" data-img="images/Spinner1.png"><img src="images/Spinner1.png"></div>
+    <div class="card" data-cat="homedecor" data-img="images/Spinner2.png"><img src="images/Spinner2.png"></div>
+    <div class="card" data-cat="homedecor" data-img="images/Spinner3.png"><img src="images/Spinner3.png"></div>
+    <div class="card" data-cat="homedecor" data-img="images/Spinner4.png"><img src="images/Spinner4.png"></div>
+    <div class="card" data-cat="homedecor" data-img="images/Spinner5.png"><img src="images/Spinner5.png"></div>
+    <div class="card" data-cat="homedecor" data-img="images/Toran.png"><img src="images/Toran.png"></div>
+
+    <div class="card" data-cat="keychainbagtags" data-img="images/strawberry.png"><img src="images/strawberry.png"></div>
+
+    <div class="card" data-cat="others" data-img="images/BabySack.png"><img src="images/BabySack.png"></div>
+    <div class="card" data-cat="others" data-img="images/Bookmarks.png"><img src="images/Bookmarks.png"></div>
+    <div class="card" data-cat="others" data-img="images/SunflowerDecor.png"><img src="images/SunflowerDecor.png"></div>
+  </div>
+</div>
+
+<div id="modal" onclick="if(event.target==this)closeModal()">
+  <div id="modal-box">
+    <img id="modalImg" src="">
+    <div class="modal-actions">
+        <a id="waBtn" href="#" target="_blank" class="order-btn btn-wa">Order via WhatsApp 🐼</a>
+        <a id="mailBtn" href="#" class="order-btn btn-mail">Inquiry via Email</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// // Particles Effect
+// const snowContainer = document.getElementById('snow-container');
+// const particles = ['🧶', '💖', '✨'];
+// function createParticle() {
+//   const p = document.createElement('div');
+//   p.classList.add('particle');
+//   p.innerText = particles[Math.floor(Math.random() * particles.length)];
+//   p.style.left = Math.random() * 100 + 'vw';
+//   p.style.animationDuration = (Math.random() * 3 + 5) + 's';
+//   p.style.fontSize = (Math.random() * 10 + 15) + 'px';
+//   snowContainer.appendChild(p);
+//   setTimeout(() => p.remove(), 8000);
+// }
+// setInterval(createParticle, 400);
+
+// Enter Site
+function enterSite() {
+  document.getElementById('welcome').style.opacity = '0';
+  setTimeout(() => document.getElementById('welcome').style.display = 'none', 800);
+}
+
+// Filtering
+const cats = document.querySelectorAll('.category');
+const cards = document.querySelectorAll('.card');
+cats.forEach(btn => {
+  btn.onclick = () => {
+    cats.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.cat;
+    cards.forEach(card => card.style.display = (filter === 'All' || card.dataset.cat === filter) ? 'block' : 'none');
+  }
+});
+
+// Modal Logic
+function closeModal() { document.getElementById('modal').style.display = 'none'; }
+cards.forEach(card => {
+  card.onclick = () => {
+    const imgPath = card.dataset.img;
+    document.getElementById('modalImg').src = imgPath;
+    document.getElementById('modal').style.display = 'flex';
+    
+    // WhatsApp Link
+    document.getElementById('waBtn').href = `https://wa.me/919922424880?text=${encodeURIComponent('Hi! I want to order this craft: ' + imgPath)}`;
+    
+    // Email Link
+    document.getElementById('mailBtn').href = `mailto:thehappypandacrafts@gmail.com?subject=Inquiry about ${imgPath}&body=Hi, The Happy Panda Crafts! I saw this on your site and would like to know more: ${window.location.href}`;
+  }
+});
+</script>
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 40px 20px 30px; background: rgba(255, 255, 255, 0.9); margin-top: 50px; border-top: 1px solid rgba(0,0,0,0.1);">
+  <div style="max-width: 600px; margin: 0 auto; font-family: 'Poppins', sans-serif;">
+    <h3 style="font-family: 'Fredoka One', cursive; color: #1a1a1a; margin-bottom: 20px; font-size: 1.4rem;">Care & Policy Information</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: flex-start;">
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🧼</div>
+        <h4 style="color: #1a1a1a; margin: 0 0 8px; font-size: 1.1rem;">Care Instructions</h4>
+        <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">All our handcrafted items require gentle handwash with mild detergent for long-lasting beauty.</p>
+      </div>
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 10px;">💝</div>
+        <h4 style="color: #1a1a1a; margin: 0 0 8px; font-size: 1.1rem;">Our Policy</h4>
+        <p style="color: #666; margin: 0; font-size: 0.95rem; line-height: 1.5;">Each piece is lovingly handmade to order. We appreciate your understanding that we cannot accept returns or provide refunds.</p>
+      </div>
+    </div>
+    <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1);">
+      <p style="color: #888; font-size: 0.85rem; margin: 0;">Thank you for choosing The Happy Panda Crafts 🧶💕</p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
 
